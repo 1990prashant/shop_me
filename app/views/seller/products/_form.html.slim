@@ -1,0 +1,32 @@
+- url = @product.new_record? ? seller_products_path : seller_product_path(@product.slug)
+= nested_form_for @product, url: url, html: { class: "form form-horizontal product" } do |f|
+  .col-lg-6
+    = f.label :name, :class => 'control-label'
+    = f.text_field :name, :class => 'form-control'
+    = f.error_span(:name)
+  .col-lg-6
+    = f.label :base_price, :class => 'control-label'
+    = f.text_field :base_price, :class => 'form-control'
+    = f.error_span(:base_price)
+  .col-lg-12#variants-div
+    = f.fields_for :variants do |vf|
+      .row
+        .col-lg-6
+          = vf.hidden_field :id
+          = vf.label :color, class: 'control-label'
+          = vf.text_field :color, class: 'form-control'
+        .col-lg-6
+          = vf.label :price, class: 'control-label'
+          = vf.text_field :price, class: 'form-control'
+      .row  
+        .col-lg-6
+          = vf.label :count_on_hand, class: 'control-label'
+          = vf.text_field :count_on_hand, class: 'form-control'
+  .col-lg-12
+    = f.link_to_add 'Add variant', :variants 
+  .col-lg-12
+    .section
+    .pull-left
+      = f.submit nil, :class => 'btn btn-primary'
+      '
+      = link_to t('.cancel', :default => t("helpers.links.cancel")), seller_products_path, :class => 'btn'

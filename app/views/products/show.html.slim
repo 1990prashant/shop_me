@@ -1,0 +1,18 @@
+.section
+.row
+  .col-sm-8.col-xs-12
+    .image-display-section
+      .large-image
+        = image_tag @product.image_url, class: 'img-responsive'
+  .col-sm-4.col-xs-12
+    .product-details
+      .name-details
+        b= @product.name
+        p= @product.description
+      #price-section
+        span.fa.fa-rupee
+        '
+        span#price
+          b= @product.base_price.to_f
+      
+      = render partial: 'cart_form'

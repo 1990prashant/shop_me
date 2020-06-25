@@ -1,0 +1,9 @@
+.section
+.row
+  - if @products.present?
+    - @products.each do |product|
+      = render partial: '/shared/product', locals: { product: product }
+  - else
+    .col-xs-12
+      .center-image
+        = image_tag '/images/noresult.png', class: 'img-responsive no-product'

@@ -1,0 +1,34 @@
+header.header
+  .container
+    .row
+      .col-xs-2
+        = link_to root_url, class: 'txt-white' do
+          span ShopMe
+      .col-xs-10
+        .info.pull-right
+          - if user_signed_in?
+            ul.txt-white
+              li
+                = current_user.name
+                '
+                span.fa.fa-caret-down
+                ul#dropdown
+                  - if current_user.seller?
+                    li
+                      = link_to seller_products_url do
+                        span.fa.fa-university
+                        '
+                        span Store
+                  - else
+                    li
+                      = link_to orders_url do
+                        span.fa.fa-list
+                        '
+                        span Orders
+                  li
+                    = link_to destroy_user_session_url, method: :delete  do
+                      span.fa.fa-power-off
+                      '
+                      span Log out
+          - else
+            = link_to "Sign in", new_user_session_url, class: 'txt-white'

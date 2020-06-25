@@ -1,0 +1,13 @@
+.col-md-3.col-sm-4.col-xs-6
+  = link_to product_url(product.slug) do
+    .product-container
+      .img-container
+        = image_tag product.image_url, class: 'img-responsive'
+      .details-container
+        .row
+          .col-sm-8.col-xs-12.name-details
+            = product.name
+          .col-sm-4.col-xs-12.price-details
+            span.fa.fa-rupee
+            '
+            = product.base_price.to_f

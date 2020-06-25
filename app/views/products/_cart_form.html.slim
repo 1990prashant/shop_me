@@ -1,0 +1,14 @@
+.cart-details
+  = form_tag populate_orders_path, class: 'form-horizontal', method: :post do |f|
+    .row
+      .col-md-6.col-xs-12
+        = hidden_field_tag :price, @product.variants.first.price
+        = label_tag :color, 'Select a color', class: 'control-label'
+        = select_tag :variant_id, options_for_select(@product.variants.pluck(:color, :id), @product.variants.first.id), { class: 'form-control' }
+      .col-md-6.col-xs-12
+        = label_tag :quantity, 'Quantity', class: 'control-label'
+        = number_field_tag :quantity, 1, min: 1, class: 'form-control'
+    .row
+      .section
+      .col-xs-12
+        = submit_tag 'Buy now', class: 'btn btn-primary'

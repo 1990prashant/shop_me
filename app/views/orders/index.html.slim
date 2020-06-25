@@ -1,0 +1,30 @@
+.section
+.row
+  .col-xs-12
+    - if @orders.present?
+      - @orders.each do |order|
+        table.table.table-responsive.table-striped
+          thead
+            tr
+              th Item Description
+              th
+              th
+          tbody
+            - order.line_items.each do |line_item|
+              tr
+                td colspan="2"
+                  = image_tag line_item.variant.product.image_url, class: 'img-responsive img-small'
+                td
+                  b= order.status.humanize
+                  br
+                  b= line_item.item_name
+                  br
+                  p= line_item.item_description
+                  br
+                  span.fa.fa-rupee
+                  '
+                  span= line_item.price.to_f
+                td
+                  - if order.cancelable && order.status != 'cancelled'
+                    = link_to 'Cancel order', order_url(order.number), method: :put, class: 'btn btn-danger'
+            

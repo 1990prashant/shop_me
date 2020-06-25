@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  variant_id: 1
+  product_id: 1
+  item_count: 1
+  price: 9.99
+
+two:
+  variant_id: 1
+  product_id: 1
+  item_count: 1
+  price: 9.99

@@ -1,0 +1,1 @@
+UserRole = { '1': 'Seller', '2': 'Customer' }

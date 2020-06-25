@@ -1,0 +1,23 @@
+.section
+.col-md-4.col-md-offset-4
+  .panel.custom-panel
+    .panel-heading
+      span Sign in
+    .panel-body
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .field
+          = f.label :email, class: 'control-label'
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
+        .field
+          = f.label :password, class: 'control-label'
+          = f.password_field :password, autocomplete: "current-password", class: "form-control"
+        - if devise_mapping.rememberable?
+          .field
+            = f.check_box :remember_me
+            '
+            = f.label :remember_me
+        
+        .actions
+          = f.submit "Log in", class: "btn btn-primary"
+
+      = render "devise/shared/links"
